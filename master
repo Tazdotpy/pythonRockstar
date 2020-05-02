@@ -1,0 +1,28 @@
+import discord
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
+    activity = discord.Activity(name='my huge nuts', type=discord.ActivityType.watching)
+    await client.change_presence(activity=activity)
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith('hello'):
+        await message.channel.send('YO!!')
+    if message.content.startswith('amanda'):
+        file = discord.File("/home/mono/Downloads/amanda.png", filename="amanda.png")
+        embed = discord.Embed()
+        embed.set_image(url="attachment://amanda.png")
+        await message.channel.send(file=file, embed=embed)
+    if message.content.startswith('yami'):
+        file = discord.File("/home/mono/Downloads/yami.png", filename="yami.png")
+        embed = discord.Embed()
+        embed.set_image(url="attachment://yami.png")
+        await message.channel.send(file=file, embed=embed)
+
